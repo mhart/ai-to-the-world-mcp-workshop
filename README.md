@@ -2,6 +2,22 @@
 
 ## Welcome to Step 4: Deploying and Using with Cloudflare AI Playground
 
+### Concepts You'll Learn
+- **Tool Discovery & Documentation**: How to make tools self-documenting and discoverable
+- **Cloud Deployment**: Deploying serverless MCP servers on Cloudflare Workers
+- **AI Assistant Integration**: Connecting your MCP tools to real AI assistants
+- **Cross-Platform Compatibility**: Making your tools work with different AI clients
+
+### Learning Objectives
+By the end of this step, you'll be able to:
+- Add meaningful descriptions to tools and parameters for better discoverability
+- Deploy your MCP server to the cloud using Cloudflare Workers
+- Connect your deployed MCP server to the Cloudflare AI Playground
+- Configure Claude Desktop to use your custom MCP tools
+- Troubleshoot common deployment and connection issues
+
+### Implementation
+
 1) First, enhance your MCP server with better descriptions
 
 Open `src/index.ts` and update your server configuration with a name and description:
