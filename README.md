@@ -181,3 +181,35 @@ npm run deploy
   - completeTodo: Mark tasks as completed
 
 Congratulations! You've created a persistent todo list using Cloudflare KV. This demonstrates how you can use Cloudflare's platform features to add powerful capabilities to your MCP tools.
+
+## Troubleshooting
+
+### KV namespace creation errors
+- Make sure you're logged in to Cloudflare: `npx wrangler whoami`
+- If not logged in, run: `npx wrangler login`
+- Try creating the namespace with a different name if there's a conflict
+- Verify you have appropriate permissions on your Cloudflare account
+
+### Environment errors when using KV
+- Check that you properly added the KV binding to wrangler.toml
+- Verify the binding name matches exactly: `TODO_STORE`
+- Make sure you updated the worker-configuration.d.ts file with the KV type
+- The binding ID must match the one provided when you created the namespace
+
+### "TypeError: env.TODO_STORE is undefined"
+- This usually means the KV binding isn't correctly set up
+- Double-check your wrangler.toml configuration
+- Make sure you've deployed the worker after adding the KV binding
+- Try running with `npx wrangler dev --local` to test locally first
+
+### Issues with task persistence
+- If tasks aren't being saved, check that the KV operations are working
+- Test with simple key-value pairs before implementing the full todo functionality
+- Verify the key and value formats in your KV.put() operations
+- Check for any errors in the catch blocks of your tool implementations
+
+### "Cannot find namespace with ID" error
+- Make sure the namespace ID in wrangler.toml matches the one from KV creation
+- Try listing your namespaces with: `npx wrangler kv:namespace list`
+- If the namespace doesn't exist, recreate it
+- Ensure you're using the same Cloudflare account that created the namespace
