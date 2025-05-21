@@ -1,6 +1,6 @@
-# ai-to-the-world-mcp-workshop
+# 🌐 AI to the World: MCP Workshop
 
-## Welcome to the AI to the World MCP Workshop! Step 3
+## Welcome to Step 3: Enhanced Random Number with Cloudflare drand
 
 1) Open your MCP Server code in your IDE of choice
 
