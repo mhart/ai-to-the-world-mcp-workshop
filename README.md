@@ -37,15 +37,17 @@ kv_namespaces = [
 ]
 ```
 
-2) Add the KV namespace to your wrangler.toml file
+2) Add the KV namespace to your wrangler.jsonc file
 
-Open `wrangler.toml` and add the KV namespace configuration from the previous step:
+Open `wrangler.jsonc` and uncomment/update the KV namespace configuration from the previous step:
 
-```toml
-kv_namespaces = [
-	{ binding = "TODO_STORE", id = "abcdef123456" }
-]
+```jsonc
+"kv_namespaces": [
+	{ "binding": "TODO_STORE", "id": "abcdef123456" }
+],
 ```
+
+Note: Replace the commented section in your wrangler.jsonc with the actual configuration and ID from the wrangler output.
 
 3) Update worker-configuration.d.ts with the KV type
 
@@ -113,13 +115,13 @@ Congratulations! You've successfully set up Cloudflare KV storage for your MCP s
 - Verify you have appropriate permissions on your Cloudflare account
 
 ### Environment errors when using KV
-- Check that you properly added the KV binding to wrangler.toml
+- Check that you properly added the KV binding to wrangler.jsonc
 - Verify the binding name matches exactly: `TODO_STORE`
 - Make sure you updated the worker-configuration.d.ts file with the KV type
 - The binding ID must match the one provided when you created the namespace
 
 ### "TypeError: env.TODO_STORE is undefined"
 - This usually means the KV binding isn't correctly set up
-- Double-check your wrangler.toml configuration
+- Double-check your wrangler.jsonc configuration
 - Make sure you've deployed the worker after adding the KV binding
 - Try running with `npx wrangler dev --local` to test locally first
