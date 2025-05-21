@@ -72,7 +72,7 @@ Enable stateful applications by adding memory to your AI tools, allowing assista
 
 We'd love to hear about what you build or help with any questions!
 
-- **Discord**: Join the [Anthropic Developer Discord](https://discord.gg/anthropic)
-- **Forums**: Post on the [Anthropic Developer Forums](https://forum.anthropic.com/)
-- **MCP GitHub**: Report issues or contribute at [MCP GitHub](https://github.com/anthropics/anthropic-cookbook/tree/main/mcp)
-- **Twitter**: Follow [@AnthropicAI](https://twitter.com/AnthropicAI) for updates
+- **Discord**: Join the [Cloudflare Developers Discord](https://discord.com/invite/cloudflaredev)
+- **Forums**: Post on the [Cloudflare Community Forums](https://community.cloudflare.com/)
+- **GitHub**: Report issues or contribute at [Cloudflare AI GitHub](https://github.com/cloudflare/ai)
+- **Twitter**: Follow [@CloudflareDev](https://twitter.com/CloudflareDev) for updates
