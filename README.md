@@ -2,6 +2,21 @@
 
 ## Welcome to Step 3: Enhanced Random Number with Cloudflare drand
 
+### Concepts You'll Learn
+- **External API Integration**: How to connect MCP tools to external services
+- **True Randomness vs. Pseudo-randomness**: Understanding cryptographic randomness
+- **Error Handling & Fallbacks**: Implementing robust tools with graceful degradation
+- **Data Transformation**: Converting API responses into consistent tool outputs
+
+### Learning Objectives
+By the end of this step, you'll be able to:
+- Integrate external APIs into your MCP tools using fetch
+- Implement proper error handling with fallback mechanisms
+- Process and transform binary data into usable formats
+- Apply cryptographic randomness from Cloudflare drand to your applications
+
+### Implementation
+
 1) Open your MCP Server code in your IDE of choice
 
 2) Navigate to src/index.ts
