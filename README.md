@@ -39,30 +39,19 @@ You'll also need a text editor or IDE of your choice (VS Code recommended).
 ## Workshop Steps
 
 ### Step 1: Getting Started with MCP Server
-- Clone the Authless MCP Server Starter Template
-- Run the MCP Server locally
-- Test your MCP Server using the MCP inspector
+Set up a basic MCP server using the Cloudflare authless template and test it locally with the MCP inspector.
 
 ### Step 2: Adding Custom Tools
-- Add a randomNumber tool to the MCP Server
-- Test your new tool with the MCP inspector
+Create your first custom MCP tool with a simple random number generator and test it using the inspector.
 
 ### Step 3: Enhanced Random Number with Cloudflare drand
-- Use the Cloudflare drand endpoint for true randomness
-- Implement error handling with fallback mechanism
-- Test the enhanced tool with MCP inspector
+Upgrade your random number tool to use Cloudflare's drand service for true randomness with error handling.
 
 ### Step 4: Deploying and Using with Cloudflare AI Playground
-- Deploy your MCP server to Cloudflare Workers
-- Test your MCP server with Cloudflare AI Playground
-- Add descriptions to improve tool discoverability
-- Connect your deployed MCP server to Claude Desktop
+Deploy your MCP server to Cloudflare Workers and test it with the Cloudflare AI Playground and Claude Desktop.
 
 ### Step 5: Adding Persistence with Cloudflare KV
-- Create a KV namespace using Wrangler
-- Build a simple todo list with persistent storage
-- Implement addTodo, listTodos, and completeTodo tools
-- Test your KV-powered tools in the Cloudflare AI Playground
+Build a persistent todo list application using Cloudflare KV storage to maintain state between sessions.
 
 ## Additional Resources
 
