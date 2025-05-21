@@ -1,6 +1,6 @@
-# ai-to-the-world-mcp-workshop
+# 🌐 AI to the World: MCP Workshop
 
-## Welcome to the AI to the World MCP Workshop! Step 1
+## Welcome to Step 1: Getting Started with MCP Server
 
 1) Create a new MCP Server using the Cloudflare template
 
