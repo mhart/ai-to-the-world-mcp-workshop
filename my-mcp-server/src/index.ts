@@ -19,6 +19,14 @@ export class MyMCP extends McpAgent {
 			})
 		);
 
+		this.server.tool(
+			"randomNumber",
+			{ a: z.number(), b: z.number() },
+			async ({ a, b }) => ({
+				content: [{ type: "text", text: String(Math.floor(Math.random() * (b - a + 1)) + a) }],
+			})
+		);
+
 		// Calculator tool with multiple operations
 		this.server.tool(
 			"calculate",

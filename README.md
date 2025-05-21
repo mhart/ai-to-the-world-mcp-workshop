@@ -1,23 +1,25 @@
 # ai-to-the-world-mcp-workshop
 
-## Welcome to the AI to the World MCP Workshop! Step 1
+## Welcome to the AI to the World MCP Workshop! Step 2
 
-1) Clone the Authless MCP Server Starter Tempalte
+1) Open your MCP Server code in your IDE of choice
 
-```bash
-npm create cloudflare@latest -- my-mcp-server --template=cloudflare/ai/demos/remote-mcp-authless
+2) Navigate to src/index.ts
+
+3) Add a new random number tool
+
+```javascript
+this.server.tool(
+    "randomNumber",
+    { a: z.number(), b: z.number() },
+    async ({ a, b }) => ({
+        content: [{ type: "text", text: String(Math.floor(Math.random() * (b - a + 1)) + a) }],
+    })
+);
 ```
 
-2) Run this MCP Server locally
+4) Test your new tool using MCP inspector
 
-You can start your MCP Server by running the following command:
-```bash
-npm start
-```
-
-3) Test your MCP Server using MCP inspector
-
-To test your MCP Server, you can use the MCP inspector:
 ```bash
 npx @modelcontextprotocol/inspector
 ```
@@ -26,4 +28,4 @@ npx @modelcontextprotocol/inspector
 * Select "SSE" as the Transport Type
 * Enter http://localhost:8787/sse in the URL box and select "Connect"
 * Click "List Tools" to view tools our MCP Server has made available to us
-* Click the "add" tool and test it out!
+* Click the "randomNumber" tool and test it out!
