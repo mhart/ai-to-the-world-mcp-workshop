@@ -1,57 +1,57 @@
 # ai-to-the-world-mcp-workshop
 
-## Welcome to the AI to the World MCP Workshop! Step 3
+## Welcome to the AI to the World MCP Workshop! Step 4
 
-1) Open your MCP Server code in your IDE of choice
-
-2) Navigate to src/index.ts
-
-3) Enhance the randomNumber tool to use the drand Cloudflare endpoint
-
-```javascript
-this.server.tool(
-    "randomNumber",
-    { a: z.number(), b: z.number() },
-    async ({ a, b }) => {
-        try {
-            // Get true randomness from drand Cloudflare endpoint
-            const response = await fetch("https://drand.cloudflare.com/public/latest");
-            const data = await response.json();
-            
-            // Use the randomness value as seed
-            const randomHex = data.randomness;
-            const randomValue = parseInt(randomHex.slice(0, 8), 16);
-            
-            // Scale to the requested range
-            const scaledRandom = Math.abs(randomValue) % (b - a + 1) + a;
-            
-            return {
-                content: [{ 
-                    type: "text", 
-                    text: String(scaledRandom)
-                }],
-            };
-        } catch (error) {
-            // Fallback to Math.random if fetch fails
-            return {
-                content: [{ 
-                    type: "text", 
-                    text: String(Math.floor(Math.random() * (b - a + 1)) + a) 
-                }],
-            };
-        }
-    }
-);
-```
-
-4) Test your enhanced tool using MCP inspector
+1) Deploy your MCP Server to Cloudflare Workers
 
 ```bash
-npx @modelcontextprotocol/inspector
+cd my-mcp-server
+npm run deploy
 ```
 
-* Visit the inspector at [http://127.0.0.1:6274](http://127.0.0.1:6274).
-* Select "SSE" as the Transport Type
-* Enter http://localhost:8787/sse in the URL box and select "Connect"
-* Click "List Tools" to view tools our MCP Server has made available to us
-* Click the "randomNumber" tool and test it out!
+This will deploy your MCP server to a Cloudflare Workers URL like:
+`https://remote-mcp-server-authless.<your-account>.workers.dev/sse`
+
+Make sure to copy this URL - you'll need it in the next step!
+
+2) Test your deployed MCP server using Cloudflare AI Playground
+
+- Go to https://playground.ai.cloudflare.com/
+- Click on "Connect to a remote MCP server"
+- Enter your deployed MCP server URL from the previous step
+- Click "Connect"
+
+3) Test each of your tools
+
+The Cloudflare AI Playground provides a user-friendly interface to interact with your MCP tools:
+
+- Click on the "Tools" button to see all available tools
+- Test the "add" tool by providing two numbers
+- Test the "randomNumber" tool and observe the true randomness from drand
+- Test the "calculate" tool with different operations
+
+4) Connect to your deployed MCP server from other clients
+
+You can also connect to your MCP server from Claude Desktop:
+
+- Follow [Anthropic's Quickstart](https://modelcontextprotocol.io/quickstart/user)
+- In Claude Desktop go to Settings > Developer > Edit Config
+- Update with this configuration, using your deployed URL:
+
+```json
+{
+  "mcpServers": {
+    "calculator": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://remote-mcp-server-authless.<your-account>.workers.dev/sse"
+      ]
+    }
+  }
+}
+```
+
+- Restart Claude and you should see your tools available
+
+Congratulations! You've built and deployed a fully functional MCP server with custom tools that can be accessed from various AI assistants.
