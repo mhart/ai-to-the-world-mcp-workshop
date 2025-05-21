@@ -2,6 +2,21 @@
 
 ## Welcome to Step 2: Adding Custom Tools
 
+### Concepts You'll Learn
+- **Tool Schema Definition**: How to define parameters and validation using Zod
+- **MCP Tool Architecture**: The three-part structure of MCP tools (name, schema, handler)
+- **Async Handlers**: Creating asynchronous function handlers for MCP tools
+- **Content Formatting**: How to structure responses for consistent AI consumption
+
+### Learning Objectives
+By the end of this step, you'll be able to:
+- Create custom MCP tools with defined parameter schemas
+- Implement a random number generator tool from scratch
+- Format tool outputs in the MCP-compliant structure
+- Test and validate custom tools using the MCP inspector
+
+### Implementation
+
 1) Open your MCP Server code in your IDE of choice
 
 2) Navigate to src/index.ts
