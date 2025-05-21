@@ -1,24 +1,50 @@
 # ai-to-the-world-mcp-workshop
 
-## Welcome to the AI to the World MCP Workshop! Step 2
+## Welcome to the AI to the World MCP Workshop! Step 3
 
 1) Open your MCP Server code in your IDE of choice
 
 2) Navigate to src/index.ts
 
-3) Add a new random number tool
+3) Enhance the randomNumber tool to use the drand Cloudflare endpoint
 
 ```javascript
 this.server.tool(
     "randomNumber",
     { a: z.number(), b: z.number() },
-    async ({ a, b }) => ({
-        content: [{ type: "text", text: String(Math.floor(Math.random() * (b - a + 1)) + a) }],
-    })
+    async ({ a, b }) => {
+        try {
+            // Get true randomness from drand Cloudflare endpoint
+            const response = await fetch("https://drand.cloudflare.com/public/latest");
+            const data = await response.json();
+            
+            // Use the randomness value as seed
+            const randomHex = data.randomness;
+            const randomValue = parseInt(randomHex.slice(0, 8), 16);
+            
+            // Scale to the requested range
+            const scaledRandom = Math.abs(randomValue) % (b - a + 1) + a;
+            
+            return {
+                content: [{ 
+                    type: "text", 
+                    text: String(scaledRandom)
+                }],
+            };
+        } catch (error) {
+            // Fallback to Math.random if fetch fails
+            return {
+                content: [{ 
+                    type: "text", 
+                    text: String(Math.floor(Math.random() * (b - a + 1)) + a) 
+                }],
+            };
+        }
+    }
 );
 ```
 
-4) Test your new tool using MCP inspector
+4) Test your enhanced tool using MCP inspector
 
 ```bash
 npx @modelcontextprotocol/inspector

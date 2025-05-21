@@ -22,9 +22,35 @@ export class MyMCP extends McpAgent {
 		this.server.tool(
 			"randomNumber",
 			{ a: z.number(), b: z.number() },
-			async ({ a, b }) => ({
-				content: [{ type: "text", text: String(Math.floor(Math.random() * (b - a + 1)) + a) }],
-			})
+			async ({ a, b }) => {
+				try {
+					// Get true randomness from drand Cloudflare endpoint
+					const response = await fetch("https://drand.cloudflare.com/public/latest");
+					const data = await response.json();
+					
+					// Use the randomness value as seed
+					const randomHex = data.randomness;
+					const randomValue = parseInt(randomHex.slice(0, 8), 16);
+					
+					// Scale to the requested range
+					const scaledRandom = Math.abs(randomValue) % (b - a + 1) + a;
+					
+					return {
+						content: [{ 
+							type: "text", 
+							text: String(scaledRandom)
+						}],
+					};
+				} catch (error) {
+					// Fallback to Math.random if fetch fails
+					return {
+						content: [{ 
+							type: "text", 
+							text: String(Math.floor(Math.random() * (b - a + 1)) + a) 
+						}],
+					};
+				}
+			}
 		);
 
 		// Calculator tool with multiple operations
