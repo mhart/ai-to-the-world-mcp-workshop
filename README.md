@@ -2,6 +2,22 @@
 
 ## Welcome to Step 6: Building a Persistent Todo App
 
+### Concepts You'll Learn
+- **Stateful Application Design**: Building applications that remember context
+- **JSON Data Serialization**: Storing structured data in KV storage
+- **Data Fetching & Aggregation**: Retrieving and processing data from storage
+- **UI Formatting for AI Consumption**: Formatting data for AI assistant display
+
+### Learning Objectives
+By the end of this step, you'll be able to:
+- Implement a complete CRUD workflow with persistent storage
+- Create tools that store and retrieve structured JSON data
+- Design user-friendly formatting for task organization
+- Process and aggregate data from multiple storage keys
+- Build tools that maintain context between AI conversations
+
+### Implementation
+
 In this step, we'll build a complete todo list application using the Cloudflare KV storage we set up in the previous step. This will demonstrate how to create AI tools that maintain state between conversations.
 
 1) Open your MCP Server code in your IDE of choice
