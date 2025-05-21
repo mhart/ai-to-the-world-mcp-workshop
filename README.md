@@ -57,8 +57,11 @@ Integrate with external APIs to give AI assistants access to powerful services b
 ### Step 4: Deploying and Using with Cloudflare AI Playground
 Make your tools accessible anywhere by deploying to the cloud and connecting to real AI assistants. We'll use the Cloudflare AI Playground for testing, with an optional section on Claude Desktop integration.
 
-### Step 5: Adding Persistence with Cloudflare KV
-Enable stateful applications by adding memory to your AI tools, allowing assistants to remember information between sessions. Cloudflare KV is a global, low-latency key-value data store that gives your MCP tools the ability to save and retrieve information persistently.
+### Step 5: Setting Up Cloudflare KV Storage
+Learn how to add persistent storage to your MCP server using Cloudflare KV. We'll set up the infrastructure needed for stateful applications.
+
+### Step 6: Building a Persistent Todo App
+Build a complete todo list application that maintains state between conversations, allowing AI assistants to remember tasks for users.
 
 ## Additional Resources
 
