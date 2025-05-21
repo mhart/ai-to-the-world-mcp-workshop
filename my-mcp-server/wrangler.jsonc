@@ -26,6 +26,10 @@
 			}
 		]
 	},
+	// Add your TODO_STORE KV namespace binding here after creation:
+	// "kv_namespaces": [
+	//   { "binding": "TODO_STORE", "id": "your-kv-namespace-id" }
+	// ],
 	"observability": {
 		"enabled": true
 	}
