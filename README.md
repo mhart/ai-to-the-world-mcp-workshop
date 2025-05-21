@@ -2,7 +2,67 @@
 
 ## Welcome to the AI to the World MCP Workshop! Step 4
 
-1) Deploy your MCP Server to Cloudflare Workers
+1) First, enhance your MCP server with better descriptions
+
+Open `src/index.ts` and update your server configuration with a name and description:
+
+```javascript
+export class MyMCP extends McpAgent {
+	server = new McpServer({
+		name: "AI to the World MCP Workshop",
+		version: "1.0.0",
+		description: "A collection of useful tools including a true random number generator powered by drand",
+	});
+```
+
+2) Add descriptions to all your tools to improve discoverability
+
+Update your tools to include parameter descriptions and tool descriptions:
+
+```javascript
+// Simple addition tool
+this.server.tool(
+    "add",
+    { 
+        a: z.number().describe("First number to add"), 
+        b: z.number().describe("Second number to add")
+    },
+    async ({ a, b }) => ({
+        content: [{ type: "text", text: String(a + b) }],
+    }),
+    {
+        description: "Simple addition of two numbers"
+    }
+);
+
+this.server.tool(
+    "randomNumber",
+    { 
+        a: z.number().describe("Minimum value (inclusive)"), 
+        b: z.number().describe("Maximum value (inclusive)")
+    },
+    // ... implementation ...
+    {
+        description: "Generate a truly random number using Cloudflare's drand service"
+    }
+);
+
+// Calculator tool
+this.server.tool(
+    "calculate",
+    {
+        operation: z.enum(["add", "subtract", "multiply", "divide"]).describe("Mathematical operation to perform"),
+        a: z.number().describe("First operand"),
+        b: z.number().describe("Second operand"),
+    },
+    // ... implementation ...
+    {
+        description: "Perform various mathematical operations on two numbers"
+    }
+);
+```
+
+3) Deploy your MCP Server to Cloudflare Workers
 
 ```bash
 cd my-mcp-server
@@ -14,14 +74,14 @@ This will deploy your MCP server to a Cloudflare Workers URL like:
 
 Make sure to copy this URL - you'll need it in the next step!
 
-2) Test your deployed MCP server using Cloudflare AI Playground
+4) Test your deployed MCP server using Cloudflare AI Playground
 
 - Go to https://playground.ai.cloudflare.com/
 - Click on "Connect to a remote MCP server"
 - Enter your deployed MCP server URL from the previous step
 - Click "Connect"
 
-3) Test each of your tools
+5) Test each of your tools
 
 The Cloudflare AI Playground provides a user-friendly interface to interact with your MCP tools:
 
@@ -30,7 +90,7 @@ The Cloudflare AI Playground provides a user-friendly interface to interact with
 - Test the "randomNumber" tool and observe the true randomness from drand
 - Test the "calculate" tool with different operations
 
-4) Connect to your deployed MCP server from other clients
+6) Connect to your deployed MCP server from other clients
 
 You can also connect to your MCP server from Claude Desktop:
 
