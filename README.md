@@ -15,5 +15,10 @@ In this workshop, we'll be building and deploying an MCP server with useful tool
 - Add a randomNumber tool to the MCP Server
 - Test your new tool with the MCP inspector
 
+### Step 3: Enhanced Random Number with Cloudflare drand
+- Use the Cloudflare drand endpoint for true randomness
+- Implement error handling with fallback mechanism
+- Test the enhanced tool with MCP inspector
+
 ### Coming Soon...
-- Step 3: More advanced tools and deployment
+- Step 4: Deploying your MCP server to Cloudflare Workers
