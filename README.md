@@ -20,5 +20,8 @@ In this workshop, we'll be building and deploying an MCP server with useful tool
 - Implement error handling with fallback mechanism
 - Test the enhanced tool with MCP inspector
 
-### Coming Soon...
-- Step 4: Deploying your MCP server to Cloudflare Workers
+### Step 4: Deploying and Using with Cloudflare AI Playground
+- Deploy your MCP server to Cloudflare Workers
+- Test your MCP server with Cloudflare AI Playground
+- Add descriptions to improve tool discoverability
+- Connect your deployed MCP server to Claude Desktop
