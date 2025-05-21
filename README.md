@@ -17,6 +17,9 @@ Before starting this workshop, please ensure you have the following installed:
 
 You'll also need a text editor or IDE of your choice (VS Code recommended).
 
+**Optional:**
+- **Claude Desktop** - Only needed for Step 4's optional integration. The workshop can be completed using just the Cloudflare AI Playground.
+
 ## Getting Started
 
 1. Clone this repository:
@@ -52,7 +55,7 @@ Discover how to extend AI capabilities by creating your own custom tools that so
 Integrate with external APIs to give AI assistants access to powerful services beyond their training data.
 
 ### Step 4: Deploying and Using with Cloudflare AI Playground
-Make your tools accessible anywhere by deploying to the cloud and connecting to real AI assistants.
+Make your tools accessible anywhere by deploying to the cloud and connecting to real AI assistants. We'll use the Cloudflare AI Playground for testing, with an optional section on Claude Desktop integration.
 
 ### Step 5: Adding Persistence with Cloudflare KV
 Enable stateful applications by adding memory to your AI tools, allowing assistants to remember information between sessions. Cloudflare KV is a global, low-latency key-value data store that gives your MCP tools the ability to save and retrieve information persistently.
