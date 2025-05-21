@@ -55,3 +55,26 @@ npx @modelcontextprotocol/inspector
 * Enter http://localhost:8787/sse in the URL box and select "Connect"
 * Click "List Tools" to view tools our MCP Server has made available to us
 * Click the "randomNumber" tool and test it out!
+
+## Troubleshooting
+
+### Network errors when calling drand endpoint
+If you get errors accessing the drand API:
+- Check your internet connection
+- Verify the URL is correct: https://drand.cloudflare.com/public/latest
+- The fallback to Math.random() should handle any API issues automatically
+
+### JSON parsing errors
+- Make sure you're correctly handling the response with `await response.json()`
+- Check the structure of the data object by adding a console.log(data)
+- Verify that the randomness property exists on the data object
+
+### Issues with the parseInt function
+- Verify you're slicing the hex string correctly: `randomHex.slice(0, 8)`
+- Make sure you're using parseInt with the hex base: `parseInt(hex, 16)`
+- Check that Math.abs() is being applied to handle potentially negative values
+
+### Scaled random number outside the expected range
+- Double-check the scaling formula: `Math.abs(randomValue) % (b - a + 1) + a`
+- Verify that the parameters `a` and `b` are being passed correctly
+- Add console.log statements to debug the values at each step
