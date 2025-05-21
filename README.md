@@ -2,20 +2,26 @@
 
 ## Welcome to the AI to the World MCP Workshop! Step 1
 
-1) Clone the Authless MCP Server Starter Tempalte
+1) Create a new MCP Server using the Cloudflare template
 
 ```bash
 npm create cloudflare@latest -- my-mcp-server --template=cloudflare/ai/demos/remote-mcp-authless
 ```
 
-2) Run this MCP Server locally
+2) Navigate to the project directory
+
+```bash
+cd my-mcp-server
+```
+
+3) Run this MCP Server locally
 
 You can start your MCP Server by running the following command:
 ```bash
 npm start
 ```
 
-3) Test your MCP Server using MCP inspector
+4) Test your MCP Server using MCP inspector
 
 To test your MCP Server, you can use the MCP inspector:
 ```bash
