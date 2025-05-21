@@ -39,19 +39,19 @@ You'll also need a text editor or IDE of your choice (VS Code recommended).
 ## Workshop Steps
 
 ### Step 1: Getting Started with MCP Server
-Set up a basic MCP server using the Cloudflare authless template and test it locally with the MCP inspector.
+Learn the fundamentals of MCP and how AI assistants can use external tools to enhance their capabilities.
 
 ### Step 2: Adding Custom Tools
-Create your first custom MCP tool with a simple random number generator and test it using the inspector.
+Discover how to extend AI capabilities by creating your own custom tools that solve specific problems.
 
 ### Step 3: Enhanced Random Number with Cloudflare drand
-Upgrade your random number tool to use Cloudflare's drand service for true randomness with error handling.
+Integrate with external APIs to give AI assistants access to powerful services beyond their training data.
 
 ### Step 4: Deploying and Using with Cloudflare AI Playground
-Deploy your MCP server to Cloudflare Workers and test it with the Cloudflare AI Playground and Claude Desktop.
+Make your tools accessible anywhere by deploying to the cloud and connecting to real AI assistants.
 
 ### Step 5: Adding Persistence with Cloudflare KV
-Build a persistent todo list application using Cloudflare KV storage to maintain state between sessions.
+Enable stateful applications by adding memory to your AI tools, allowing assistants to remember information between sessions.
 
 ## Additional Resources
 
