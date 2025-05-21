@@ -2,6 +2,8 @@
 
 ## Welcome to the AI to the World MCP Workshop!
 
+The Model Context Protocol (MCP) is an open standard that allows AI assistants to use external tools and access real-time information. By building an MCP server, you enable AI systems like Claude to extend their capabilities through your custom tools, creating more powerful AI agents.
+
 In this workshop, we'll be building and deploying an MCP server with useful tools. You can work through each step by changing branches in this repo.
 
 ## Prerequisites
@@ -44,7 +46,7 @@ Each step includes a detailed troubleshooting section to help you overcome commo
 Learn the fundamentals of MCP and how AI assistants can use external tools to enhance their capabilities.
 
 ### Step 2: Adding Custom Tools
-Discover how to extend AI capabilities by creating your own custom tools that solve specific problems.
+Discover how to extend AI capabilities by creating your own custom tools that solve specific problems. We'll create a randomNumber tool that AI assistants can use for games, simulations, and unpredictable outcomes.
 
 ### Step 3: Enhanced Random Number with Cloudflare drand
 Integrate with external APIs to give AI assistants access to powerful services beyond their training data.
@@ -53,7 +55,7 @@ Integrate with external APIs to give AI assistants access to powerful services b
 Make your tools accessible anywhere by deploying to the cloud and connecting to real AI assistants.
 
 ### Step 5: Adding Persistence with Cloudflare KV
-Enable stateful applications by adding memory to your AI tools, allowing assistants to remember information between sessions.
+Enable stateful applications by adding memory to your AI tools, allowing assistants to remember information between sessions. Cloudflare KV is a global, low-latency key-value data store that gives your MCP tools the ability to save and retrieve information persistently.
 
 ## Additional Resources
 
