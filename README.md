@@ -63,6 +63,9 @@ Learn how to add persistent storage to your MCP server using Cloudflare KV. We'l
 ### Step 6: Building a Persistent Todo App
 Build a complete todo list application that maintains state between conversations, allowing AI assistants to remember tasks for users.
 
+### Step 7: Customize Your MCP Server with AI Assistance
+Use AI tools like Claude Code or Cursor to create your own custom MCP tools, connecting to APIs and services that interest you. This step encourages creative exploration and showcases how AI can accelerate your development workflow.
+
 ## Additional Resources
 
 - [Model Context Protocol (MCP) Documentation](https://modelcontextprotocol.io/)
