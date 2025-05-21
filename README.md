@@ -115,3 +115,33 @@ You can also connect to your MCP server from Claude Desktop:
 - Restart Claude and you should see your tools available
 
 Congratulations! You've built and deployed a fully functional MCP server with custom tools that can be accessed from various AI assistants.
+
+## Troubleshooting
+
+### Deployment errors
+- Make sure you're in the correct directory (`cd my-mcp-server`)
+- Check if you're logged in to Cloudflare: `npx wrangler whoami`
+- If not logged in, run: `npx wrangler login`
+- If you get build errors, check for syntax issues in your code
+
+### "Error: Cannot find KV namespace binding" on deploy
+- This can sometimes happen if you have KV bindings from step5
+- Remove or comment out KV bindings in wrangler.toml for this step
+
+### Can't connect to deployed MCP server in Playground
+- Make sure you're using the full URL including `/sse` at the end
+- Verify your Cloudflare Worker was deployed successfully
+- Check that you're using the correct account subdomain
+- Try accessing the URL directly in your browser to see if it responds
+
+### Tools not appearing in Cloudflare AI Playground
+- Check that you clicked "Connect" before trying to list tools
+- Make sure the URL is correct: `https://remote-mcp-server-authless.<your-account>.workers.dev/sse`
+- Try refreshing the page and reconnecting
+- Check your browser's developer console for network errors
+
+### Claude Desktop integration issues
+- Make sure you've configured the Claude Desktop config correctly
+- Check that you're using the proper URL format in the configuration
+- Verify you've restarted Claude Desktop after making configuration changes
+- Try "npx mcp-remote https://your-url.workers.dev/sse" in a terminal to test the connection
