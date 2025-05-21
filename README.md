@@ -67,3 +67,12 @@ Enable stateful applications by adding memory to your AI tools, allowing assista
 - [Cloudflare KV Documentation](https://developers.cloudflare.com/workers/runtime-apis/kv/)
 - [Cloudflare AI Playground](https://playground.ai.cloudflare.com/)
 - [Claude Documentation](https://docs.anthropic.com/claude/)
+
+## Community & Support
+
+We'd love to hear about what you build or help with any questions!
+
+- **Discord**: Join the [Anthropic Developer Discord](https://discord.gg/anthropic)
+- **Forums**: Post on the [Anthropic Developer Forums](https://forum.anthropic.com/)
+- **MCP GitHub**: Report issues or contribute at [MCP GitHub](https://github.com/anthropics/anthropic-cookbook/tree/main/mcp)
+- **Twitter**: Follow [@AnthropicAI](https://twitter.com/AnthropicAI) for updates
