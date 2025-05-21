@@ -2,6 +2,22 @@
 
 ## Welcome to Step 5: Setting Up Cloudflare KV Storage
 
+### Concepts You'll Learn
+- **Persistence in Serverless**: How to add state to stateless environments
+- **Key-Value Storage**: Understanding KV storage patterns and use cases
+- **Configuration Binding**: Connecting Cloudflare KV to your Workers environment
+- **TypeScript Type Declarations**: Adding proper types for external services
+
+### Learning Objectives
+By the end of this step, you'll be able to:
+- Create and configure a Cloudflare KV namespace
+- Add storage capabilities to your MCP server
+- Update TypeScript definitions to maintain type safety with KV
+- Test basic read/write operations with persistent storage
+- Troubleshoot common KV configuration issues
+
+### Implementation
+
 In this step, we'll add persistent storage capabilities to our MCP server by setting up Cloudflare KV (Key-Value) storage. This will allow our tools to remember information between sessions.
 
 1) Create a KV namespace using Wrangler
