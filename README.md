@@ -25,3 +25,9 @@ In this workshop, we'll be building and deploying an MCP server with useful tool
 - Test your MCP server with Cloudflare AI Playground
 - Add descriptions to improve tool discoverability
 - Connect your deployed MCP server to Claude Desktop
+
+### Step 5: Adding Persistence with Cloudflare KV
+- Create a KV namespace using Wrangler
+- Build a simple todo list with persistent storage
+- Implement addTodo, listTodos, and completeTodo tools
+- Test your KV-powered tools in the Cloudflare AI Playground
