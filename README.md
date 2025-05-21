@@ -22,24 +22,17 @@ You'll also need a text editor or IDE of your choice (VS Code recommended).
 
 ## Getting Started
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/rickyrobinett/ai-to-the-world-mcp-workshop.git
-   cd ai-to-the-world-mcp-workshop
-   ```
+This workshop is designed to be followed step-by-step by implementing the code yourself. Each step is documented in its own branch of this repository for reference.
 
-2. Navigate between steps using Git:
-   ```bash
-   # For step 1
-   git checkout step1
-   
-   # For step 2
-   git checkout step2
-   
-   # And so on...
-   ```
+1. **Follow the steps in sequence**, starting with Step 1.
 
-3. Follow the instructions in the README.md for each step
+2. **Use this repository as reference** if you get stuck:
+   - Browse to the corresponding step branch on GitHub to see the implementation
+   - Step branches are named `step1`, `step2`, etc.
+   - View the README.md in each branch for detailed instructions
+   - Check the code in each branch to see the completed implementation
+
+3. **If you fall behind during the live workshop**, you can use the instructor's code as a checkpoint.
 
 Each step includes a detailed troubleshooting section to help you overcome common issues.
 
