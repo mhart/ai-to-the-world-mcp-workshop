@@ -36,6 +36,8 @@ You'll also need a text editor or IDE of your choice (VS Code recommended).
 
 3. Follow the instructions in the README.md for each step
 
+Each step includes a detailed troubleshooting section to help you overcome common issues.
+
 ## Workshop Steps
 
 ### Step 1: Getting Started with MCP Server
