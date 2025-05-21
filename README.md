@@ -1,6 +1,6 @@
-# ai-to-the-world-mcp-workshop
+# 🌐 AI to the World: MCP Workshop
 
-## Welcome to the AI to the World MCP Workshop! Step 5
+## Welcome to Step 5: Adding Persistence with Cloudflare KV
 
 In this step, we'll add persistent storage to our MCP server using Cloudflare KV. We'll build a simple todo list that can be used by AI assistants to remember tasks for users.
 
