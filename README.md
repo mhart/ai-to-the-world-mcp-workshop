@@ -18,7 +18,7 @@ Before starting this workshop, please ensure you have the following installed:
 You'll also need a text editor or IDE of your choice (VS Code recommended).
 
 **Optional:**
-- **Claude Desktop** - Only needed for Step 4's optional integration. The workshop can be completed using just the Cloudflare AI Playground.
+- **Claude Desktop** - [Download](https://claude.ai/desktop) - Only needed for Step 4's optional integration. The workshop can be completed using just the Cloudflare AI Playground.
 
 ## Getting Started
 
