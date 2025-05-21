@@ -1,4 +1,4 @@
-# ai-to-the-world-mcp-workshop
+# 🌐 AI to the World: MCP Workshop
 
 ## Welcome to the AI to the World MCP Workshop!
 
