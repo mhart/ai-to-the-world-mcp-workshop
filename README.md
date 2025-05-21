@@ -1,6 +1,6 @@
-# ai-to-the-world-mcp-workshop
+# 🌐 AI to the World: MCP Workshop
 
-## Welcome to the AI to the World MCP Workshop! Step 4
+## Welcome to Step 4: Deploying and Using with Cloudflare AI Playground
 
 1) First, enhance your MCP server with better descriptions
 
