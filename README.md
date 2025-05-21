@@ -2,6 +2,21 @@
 
 ## Welcome to Step 1: Getting Started with MCP Server
 
+### Concepts You'll Learn
+- **Model Context Protocol (MCP)**: The open standard that allows AI assistants to use external tools
+- **Server-Client Architecture**: How MCP servers communicate with AI assistants 
+- **Tool Definition Pattern**: The structure and components of a basic MCP tool
+- **Local Development Flow**: Setting up and testing a Cloudflare Workers development environment
+
+### Learning Objectives
+By the end of this step, you'll be able to:
+- Set up a functional MCP server using Cloudflare Workers
+- Understand the basic structure of an MCP server
+- Test your MCP tools using the inspector interface
+- Troubleshoot common setup and connection issues
+
+### Implementation
+
 1) Create a new MCP Server using the Cloudflare template
 
 ```bash
