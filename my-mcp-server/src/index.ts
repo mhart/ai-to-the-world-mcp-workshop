@@ -9,29 +9,13 @@ export class MyMCP extends McpAgent {
 		version: "1.0.0",
 		description: "A collection of useful tools including a true random number generator powered by drand",
 	});
-
 	async init() {
-		// Simple addition tool
-		this.server.tool(
-			"add",
-			{ 
-				a: z.number().describe("First number to add"), 
-				b: z.number().describe("Second number to add")
-			},
-			async ({ a, b }) => ({
-				content: [{ type: "text", text: String(a + b) }],
-			}),
-			{
-				description: "Simple addition of two numbers"
-			}
-		);
 
+		// Random number tool
 		this.server.tool(
 			"randomNumber",
-			{ 
-				a: z.number().describe("Minimum value (inclusive)"), 
-				b: z.number().describe("Maximum value (inclusive)")
-			},
+			"Generate a random number between a and b",
+			{ a: z.number().describe("The minimum value of the range"), b: z.number().describe("The maximum value of the range") },
 			async ({ a, b }) => {
 				try {
 					// Get true randomness from drand Cloudflare endpoint
@@ -39,8 +23,10 @@ export class MyMCP extends McpAgent {
 					const data = await response.json();
 					
 					// Use the randomness value as seed
+					// Take a random 8-character slice from the full randomness string
 					const randomHex = data.randomness;
-					const randomValue = parseInt(randomHex.slice(0, 8), 16);
+					const startIndex = Math.floor(Math.random() * (randomHex.length - 8));
+					const randomValue = parseInt(randomHex.slice(startIndex, startIndex + 8), 16);
 					
 					// Scale to the requested range
 					const scaledRandom = Math.abs(randomValue) % (b - a + 1) + a;
@@ -60,19 +46,27 @@ export class MyMCP extends McpAgent {
 						}],
 					};
 				}
-			},
-			{
-				description: "Generate a truly random number using Cloudflare's drand service"
 			}
+		);
+		
+		// Simple addition tool
+		this.server.tool(
+			"add",
+			"Add two numbers together",
+			{ a: z.number().describe("The first number"), b: z.number().describe("The second number") },
+			async ({ a, b }) => ({
+				content: [{ type: "text", text: String(a + b) }],
+			})
 		);
 
 		// Calculator tool with multiple operations
 		this.server.tool(
 			"calculate",
+			"Perform a mathematical operation on two numbers",
 			{
-				operation: z.enum(["add", "subtract", "multiply", "divide"]).describe("Mathematical operation to perform"),
-				a: z.number().describe("First operand"),
-				b: z.number().describe("Second operand"),
+				operation: z.enum(["add", "subtract", "multiply", "divide"]).describe("The operation to perform"),
+				a: z.number().describe("The first number"),
+				b: z.number().describe("The second number"),
 			},
 			async ({ operation, a, b }) => {
 				let result: number;
@@ -100,9 +94,6 @@ export class MyMCP extends McpAgent {
 						break;
 				}
 				return { content: [{ type: "text", text: String(result) }] };
-			},
-			{
-				description: "Perform various mathematical operations on two numbers"
 			}
 		);
 	}
@@ -113,15 +104,14 @@ export default {
 		const url = new URL(request.url);
 
 		if (url.pathname === "/sse" || url.pathname === "/sse/message") {
-			// @ts-ignore
 			return MyMCP.serveSSE("/sse").fetch(request, env, ctx);
 		}
 
 		if (url.pathname === "/mcp") {
-			// @ts-ignore
 			return MyMCP.serve("/mcp").fetch(request, env, ctx);
 		}
 
 		return new Response("Not found", { status: 404 });
 	},
 };
+
