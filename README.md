@@ -1,5 +1,5 @@
 # 🌐 AI to the World: MCP Workshop
-
+}}}}
 ## Welcome to Step 4: Deploying and Using with Cloudflare AI Playground
 
 ### Concepts You'll Learn
@@ -36,7 +36,6 @@ export class MyMCP extends McpAgent {
 Update your tools to include parameter descriptions and tool descriptions:
 
 ```javascript
-// Simple addition tool
 this.server.tool(
     "add",
     "Simple addition of two numbers",
@@ -59,7 +58,6 @@ this.server.tool(
     // ... implementation ...
 );
 
-// Calculator tool
 this.server.tool(
     "calculate",
     "Perform various mathematical operations on two numbers",
@@ -75,12 +73,11 @@ this.server.tool(
 3) Deploy your MCP Server to Cloudflare Workers
 
 ```bash
-cd my-mcp-server
 npm run deploy
 ```
 
 This will deploy your MCP server to a Cloudflare Workers URL like:
-`https://remote-mcp-server-authless.<your-account>.workers.dev/sse`
+`https://my-mcp-server.<your-account>.workers.dev/sse`
 
 Make sure to copy this URL - you'll need it in the next step!
 
