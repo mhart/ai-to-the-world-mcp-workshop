@@ -23,18 +23,22 @@ In this step, we'll add persistent storage capabilities to our MCP server by set
 1) Create a KV namespace using Wrangler
 
 ```bash
-cd my-mcp-server
-npx wrangler kv:namespace create "TODO_STORE"
+npx wrangler kv namespace create "TODO_STORE"
 ```
 
 This will output something like:
 ```
-🌀 Creating namespace with title "my-mcp-server-TODO_STORE"
-✨ Success! Created namespace with ID "abcdef123456"
-Add the following to your wrangler.toml:
-kv_namespaces = [
-	{ binding = "TODO_STORE", id = "abcdef123456" }
-]
+🌀 Creating namespace with title "TODO_STORE"
+✨ Success!
+Add the following to your configuration file in your kv_namespaces array:
+{
+  "kv_namespaces": [
+    {
+      "binding": "TODO_STORE",
+      "id": "abc1234567890"
+    }
+  ]
+}
 ```
 
 2) Add the KV namespace to your wrangler.jsonc file
@@ -42,21 +46,21 @@ kv_namespaces = [
 Open `wrangler.jsonc` and uncomment/update the KV namespace configuration from the previous step:
 
 ```jsonc
-"kv_namespaces": [
-	{ "binding": "TODO_STORE", "id": "abcdef123456" }
-],
+  "kv_namespaces": [
+    {
+      "binding": "TODO_STORE",
+      "id": "abc1234567890"
+    }
+  ]
 ```
 
 Note: Replace the commented section in your wrangler.jsonc with the actual configuration and ID from the wrangler output.
 
 3) Update worker-configuration.d.ts with the KV type
 
-Open `worker-configuration.d.ts` and modify the Env interface to include the KV binding:
-
-```typescript
-interface Env {
-    TODO_STORE: KVNamespace;
-}
+Automatically generate types by running the following command:
+```bash
+npm run cf-typegen 
 ```
 
 4) Create a simple test tool to verify KV is working
@@ -64,44 +68,42 @@ interface Env {
 Open `src/index.ts` and add this simple test tool inside the `init()` method:
 
 ```javascript
-// Simple KV test tool
-this.server.tool(
-    "storeValue",
-    { 
-        key: z.string().describe("Key to store the value under"),
-        value: z.string().describe("Value to store")
-    },
-    async ({ key, value }, env) => {
-        try {
-            // Store value in KV
-            await env.TODO_STORE.put(key, value);
-            
-            return { 
-                content: [{ 
-                    type: "text", 
-                    text: `✅ Stored value "${value}" under key "${key}"` 
-                }] 
-            };
-        } catch (error) {
-            return { content: [{ type: "text", text: `Error storing value: ${error.message}` }] };
-        }
-    },
-    {
-        description: "Store a simple key-value pair in Cloudflare KV"
-    }
-);
+        this.server.tool(
+			"storeValue",
+			"Store a simple key-value pair in Cloudflare KV",
+			{ 
+				key: z.string().describe("Key to store the value under"),
+				value: z.string().describe("Value to store")
+			},
+			async ({ key, value }) => {
+				try {
+					await this.env.TODO_STORE.put(key, value);
+					
+					return {
+						content: [{ 
+							type: "text", 
+							text: "Value stored successfully" 
+						}]
+					};
+				} catch (error: any) {
+					console.error("Error storing value:", error);
+					throw new Error(`Failed to store value: ${error?.message || 'Unknown error'}`);
+				}
+			}
+		);
 ```
 
-5) Deploy your MCP server with the new KV binding
+5) Run locally with your new KV binding
 
 ```bash
-npm run deploy
+npm run dev
 ```
 
-6) Test your KV storage with Cloudflare AI Playground
+6) Test your KV storage with MCP Inspector
 
-- Go to https://playground.ai.cloudflare.com/ 
-- Connect to your deployed MCP server URL
+- Go to http://127.0.0.1:6274/ 
+- Connect to your local MCP server URL or "clear" and "list" tools if already
+  connected to see your new storevalue tool
 - Try the storeValue tool with a simple key and value (e.g., key="test", value="Hello KV!")
 
 Congratulations! You've successfully set up Cloudflare KV storage for your MCP server. In the next step, we'll build a complete todo list application using this persistent storage.
