@@ -39,42 +39,36 @@ Update your tools to include parameter descriptions and tool descriptions:
 // Simple addition tool
 this.server.tool(
     "add",
+    "Simple addition of two numbers",
     { 
         a: z.number().describe("First number to add"), 
         b: z.number().describe("Second number to add")
     },
     async ({ a, b }) => ({
         content: [{ type: "text", text: String(a + b) }],
-    }),
-    {
-        description: "Simple addition of two numbers"
-    }
+    })
 );
 
 this.server.tool(
     "randomNumber",
+    "Generate a truly random number using Cloudflare's drand service",
     { 
         a: z.number().describe("Minimum value (inclusive)"), 
         b: z.number().describe("Maximum value (inclusive)")
     },
     // ... implementation ...
-    {
-        description: "Generate a truly random number using Cloudflare's drand service"
-    }
 );
 
 // Calculator tool
 this.server.tool(
     "calculate",
+    "Perform various mathematical operations on two numbers",
     {
         operation: z.enum(["add", "subtract", "multiply", "divide"]).describe("Mathematical operation to perform"),
         a: z.number().describe("First operand"),
         b: z.number().describe("Second operand"),
     },
     // ... implementation ...
-    {
-        description: "Perform various mathematical operations on two numbers"
-    }
 );
 ```
 
