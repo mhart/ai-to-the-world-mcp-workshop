@@ -10,15 +10,8 @@ export class MyMCP extends McpAgent {
 	});
 
 	async init() {
-		// Simple addition tool
-		this.server.tool(
-			"add",
-			{ a: z.number(), b: z.number() },
-			async ({ a, b }) => ({
-				content: [{ type: "text", text: String(a + b) }],
-			})
-		);
 
+		// Random number tool
 		this.server.tool(
 			"randomNumber",
 			{ a: z.number(), b: z.number() },
@@ -29,8 +22,10 @@ export class MyMCP extends McpAgent {
 					const data = await response.json();
 					
 					// Use the randomness value as seed
+					// Take a random 8-character slice from the full randomness string
 					const randomHex = data.randomness;
-					const randomValue = parseInt(randomHex.slice(0, 8), 16);
+					const startIndex = Math.floor(Math.random() * (randomHex.length - 8));
+					const randomValue = parseInt(randomHex.slice(startIndex, startIndex + 8), 16);
 					
 					// Scale to the requested range
 					const scaledRandom = Math.abs(randomValue) % (b - a + 1) + a;
@@ -51,6 +46,15 @@ export class MyMCP extends McpAgent {
 					};
 				}
 			}
+		);
+		
+		// Simple addition tool
+		this.server.tool(
+			"add",
+			{ a: z.number(), b: z.number() },
+			async ({ a, b }) => ({
+				content: [{ type: "text", text: String(a + b) }],
+			})
 		);
 
 		// Calculator tool with multiple operations
@@ -97,15 +101,14 @@ export default {
 		const url = new URL(request.url);
 
 		if (url.pathname === "/sse" || url.pathname === "/sse/message") {
-			// @ts-ignore
 			return MyMCP.serveSSE("/sse").fetch(request, env, ctx);
 		}
 
 		if (url.pathname === "/mcp") {
-			// @ts-ignore
 			return MyMCP.serve("/mcp").fetch(request, env, ctx);
 		}
 
 		return new Response("Not found", { status: 404 });
 	},
 };
+

@@ -24,6 +24,7 @@ By the end of this step, you'll be able to:
 3) Enhance the randomNumber tool to use the drand Cloudflare endpoint
 
 ```javascript
+// Random number tool
 this.server.tool(
     "randomNumber",
     { a: z.number(), b: z.number() },
@@ -34,8 +35,10 @@ this.server.tool(
             const data = await response.json();
             
             // Use the randomness value as seed
+            // Take a random 8-character slice from the full randomness string
             const randomHex = data.randomness;
-            const randomValue = parseInt(randomHex.slice(0, 8), 16);
+            const startIndex = Math.floor(Math.random() * (randomHex.length - 8));
+            const randomValue = parseInt(randomHex.slice(startIndex, startIndex + 8), 16);
             
             // Scale to the requested range
             const scaledRandom = Math.abs(randomValue) % (b - a + 1) + a;
@@ -85,7 +88,7 @@ If you get errors accessing the drand API:
 - Verify that the randomness property exists on the data object
 
 ### Issues with the parseInt function
-- Verify you're slicing the hex string correctly: `randomHex.slice(0, 8)`
+- Verify you're slicing the hex string correctly: `randomHex.slice(startIndex, startIndex + 8)`
 - Make sure you're using parseInt with the hex base: `parseInt(hex, 16)`
 - Check that Math.abs() is being applied to handle potentially negative values
 
