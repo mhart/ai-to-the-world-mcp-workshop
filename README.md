@@ -28,31 +28,31 @@ In this step, we'll build a complete todo list application using the Cloudflare 
 
 ```javascript
 // Add Todo tool
-    this.server.tool(
-			"addTodo",
-			"Add a new task to your todo list",
-			{ 
-				task: z.string().describe("Task description to add to your todo list")
-			},
-			async ({ task }) => {
-				try {
-					// Store task in KV with the task description as the key
-					await this.env.TODO_STORE.put(task, JSON.stringify({
-						completed: false,
-						createdAt: new Date().toISOString()
-					}));
-					
-					return { 
-						content: [{ 
-							type: "text", 
-							text: `✅ Added task: "${task}"` 
-						}] 
-					};
-				} catch (error) {
-					return { content: [{ type: "text", text: `Error adding task: ${error.message}` }] };
-				}
-			}
-		);
+this.server.tool(
+    "addTodo",
+    "Add a new task to your todo list",
+    { 
+        task: z.string().describe("Task description to add to your todo list")
+    },
+    async ({ task }) => {
+        try {
+            // Store task in KV with the task description as the key
+            await this.env.TODO_STORE.put(task, JSON.stringify({
+                completed: false,
+                createdAt: new Date().toISOString()
+            }));
+            
+            return { 
+                content: [{ 
+                    type: "text", 
+                    text: `✅ Added task: "${task}"` 
+                }] 
+            };
+        } catch (error) {
+            return { content: [{ type: "text", text: `Error adding task: ${error.message}` }] };
+        }
+    }
+);
 ```
 
 4) Add the "listTodos" tool
@@ -60,70 +60,70 @@ In this step, we'll build a complete todo list application using the Cloudflare 
 ```javascript
 // List Todos tool
 this.server.tool(
-			"listTodos",
-			"List all tasks in your todo list",
-			{},
-			async (_) => {
-				try {
-					const { keys } = await this.env.TODO_STORE.list();
-					
-					if (keys.length === 0) {
-						return { content: [{ type: "text", text: "No tasks found in your todo list" }] };
-					}
-										
-					const values = await this.env.TODO_STORE.get(keys.map(k => k.name));
+    "listTodos",
+    "List all tasks in your todo list",
+    {},
+    async (_) => {
+        try {
+            const { keys } = await this.env.TODO_STORE.list();
+            
+            if (keys.length === 0) {
+                return { content: [{ type: "text", text: "No tasks found in your todo list" }] };
+            }
+                                
+            const values = await this.env.TODO_STORE.get(keys.map(k => k.name));
 
-					const obj = Object.fromEntries(values);
-					const jsonString = JSON.stringify(obj, null, 2);
-					
-					return { 
-						content: [{ 
-							type: "text", 
-							text: jsonString
-						}] 
-					};
-				} catch (error: unknown) {
-					const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-					return { content: [{ type: "text", text: `Error listing tasks: ${errorMessage}` }] };
-				}
-			}
-		);
+            const obj = Object.fromEntries(values);
+            const jsonString = JSON.stringify(obj, null, 2);
+            
+            return { 
+                content: [{ 
+                    type: "text", 
+                    text: jsonString
+                }] 
+            };
+        } catch (error: unknown) {
+            const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+            return { content: [{ type: "text", text: `Error listing tasks: ${errorMessage}` }] };
+        }
+    }
+);
 ```
 
 5) Add the "completeTodo" tool
 
 ```javascript
 // Complete Todo tool
-        this.server.tool(
-			"completeTodo",
-			"Mark a task as completed in your todo list",
-			{ 
-				task: z.string().describe("The task to mark as completed")
-			},
-			async ({ task }) => {
-				try {
-					// Check if task exists
-					const taskData = await this.env.TODO_STORE.get(task, "json");
-					
-					if (!taskData) {
-						return { content: [{ type: "text", text: `Task "${task}" not found` }] };
-					}
-					
-					// Mark as completed
-					taskData.completed = true;
-					await this.env.TODO_STORE.put(task, JSON.stringify(taskData));
-					
-					return { 
-						content: [{ 
-							type: "text", 
-							text: `✅ Marked task "${task}" as completed` 
-						}] 
-					};
-				} catch (error) {
-					return { content: [{ type: "text", text: `Error completing task: ${error.message}` }] };
-				}
-			}
-		);
+this.server.tool(
+    "completeTodo",
+    "Mark a task as completed in your todo list",
+    { 
+        task: z.string().describe("The task to mark as completed")
+    },
+    async ({ task }) => {
+        try {
+            // Check if task exists
+            const taskData = await this.env.TODO_STORE.get(task, "json");
+            
+            if (!taskData) {
+                return { content: [{ type: "text", text: `Task "${task}" not found` }] };
+            }
+            
+            // Mark as completed
+            taskData.completed = true;
+            await this.env.TODO_STORE.put(task, JSON.stringify(taskData));
+            
+            return { 
+                content: [{ 
+                    type: "text", 
+                    text: `✅ Marked task "${task}" as completed` 
+                }] 
+            };
+        } catch (error) {
+            return { content: [{ type: "text", text: `Error completing task: ${error.message}` }] };
+        }
+    }
+);
 ```
 
 6) Deploy your MCP server with the todo app tools
