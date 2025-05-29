@@ -36,8 +36,7 @@ this.server.tool(
 4) Test your new tool using Cloudflare's AI Playground
 
 - Go to https://playground.ai.cloudflare.com/
-- Click on "Connect to a remote MCP server"
-- Enter http://localhost:8787/sse in the MCP Server URL
+- Enter http://localhost:8787/sse in the MCP Server URL under "MCP Servers"
 - Click "Connect"
 - Enter "Add 2 + 4 together using our add MCP tool" as a User message and click
   "Run"
