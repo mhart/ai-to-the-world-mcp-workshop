@@ -23,7 +23,7 @@ By the end of this step, you'll be able to:
 Open `src/index.ts` and update your server configuration with a name and description:
 
 ```javascript
-export class MyMCP extends McpAgent {
+export class MyMCP extends McpAgent<Env> {
 	server = new McpServer({
 		name: "AI to the World MCP Workshop",
 		version: "1.0.0",
