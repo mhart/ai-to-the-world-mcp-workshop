@@ -49,7 +49,7 @@ this.server.tool(
                 }] 
             };
         } catch (error) {
-            return { content: [{ type: "text", text: `Error adding task: ${error.message}` }] };
+            return { content: [{ type: "text", text: `Error adding task: ${error}` }] };
         }
     }
 );
@@ -82,9 +82,8 @@ this.server.tool(
                     text: jsonString
                 }] 
             };
-        } catch (error: unknown) {
-            const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-            return { content: [{ type: "text", text: `Error listing tasks: ${errorMessage}` }] };
+        } catch (error) {
+            return { content: [{ type: "text", text: `Error listing tasks: ${error}` }] };
         }
     }
 );
@@ -120,7 +119,7 @@ this.server.tool(
                 }] 
             };
         } catch (error) {
-            return { content: [{ type: "text", text: `Error completing task: ${error.message}` }] };
+            return { content: [{ type: "text", text: `Error completing task: ${error}` }] };
         }
     }
 );
