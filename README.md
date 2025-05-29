@@ -86,8 +86,7 @@ Open `src/index.ts` and add this simple test tool inside the `init()` method:
 						}]
 					};
 				} catch (error: any) {
-					console.error("Error storing value:", error);
-					throw new Error(`Failed to store value: ${error?.message || 'Unknown error'}`);
+					throw new Error(`Failed to store value: ${error}`);
 				}
 			}
 		);
