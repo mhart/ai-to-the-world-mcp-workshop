@@ -33,17 +33,14 @@ this.server.tool(
 );
 ```
 
-4) Test your new tool using MCP inspector
+4) Test your new tool using Cloudflare's AI Playground
 
-```bash
-npx @modelcontextprotocol/inspector
-```
-
-* Visit the inspector at [http://127.0.0.1:6274](http://127.0.0.1:6274).
-* Select "SSE" as the Transport Type
-* Enter http://localhost:8787/sse in the URL box and select "Connect"
-* Click "List Tools" to view tools our MCP Server has made available to us
-* Click the "randomNumber" tool and test it out!
+- Go to https://playground.ai.cloudflare.com/
+- Click on "Connect to a remote MCP server"
+- Enter http://localhost:8787/sse in the MCP Server URL
+- Click "Connect"
+- Enter "Add 2 + 4 together using our add MCP tool" as a User message and click
+  "Run"
 
 ## Troubleshooting
 
