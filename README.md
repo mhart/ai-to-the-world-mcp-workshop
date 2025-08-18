@@ -183,3 +183,4 @@ Congratulations on completing the AI to the World MCP Workshop! You've built a f
 - Post in the Cloudflare Discord community
 - Create a blog post or tutorial about your custom tool
 - Submit a pull request to the workshop repository
+- We have a new dedicated workshop site: https://learnmcp.examples.workers.dev/
