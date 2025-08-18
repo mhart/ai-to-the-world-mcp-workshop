@@ -10,14 +10,14 @@ In this workshop, we'll be building and deploying an MCP server with useful tool
 
 Before starting this workshop, please ensure you have the following installed:
 
+- **Operating System** macOS 13.5+, Windows 11, or Linux distros that support glib 2.35
 - **Node.js** (version 18 or later) - [Download](https://nodejs.org/)
-- **Wrangler CLI** - Install with `npm install -g wrangler`
 - **A Cloudflare account** - [Sign up](https://dash.cloudflare.com/sign-up) (free tier is sufficient)
-- **Git** - [Download](https://git-scm.com/downloads)
 
 You'll also need a text editor or IDE of your choice (VS Code recommended).
 
 **Optional:**
+
 - **Claude Desktop** - [Download](https://claude.ai/desktop) - Only needed for Step 4's optional integration. The workshop can be completed using just the Cloudflare AI Playground.
 
 ## Getting Started
@@ -27,6 +27,7 @@ This workshop is designed to be followed step-by-step by implementing the code y
 1. **Follow the steps in sequence**, starting with Step 1.
 
 2. **Use this repository as reference** if you get stuck:
+
    - Browse to the corresponding step branch on GitHub to see the implementation
    - Step branches are named `step1`, `step2`, etc.
    - View the README.md in each branch for detailed instructions
@@ -39,24 +40,31 @@ Each step includes a detailed troubleshooting section to help you overcome commo
 ## Workshop Steps
 
 ### Step 1: Getting Started with MCP Server
+
 Learn the fundamentals of MCP and how AI assistants can use external tools to enhance their capabilities.
 
 ### Step 2: Adding Custom Tools
+
 Discover how to extend AI capabilities by creating your own custom tools that solve specific problems. We'll create a randomNumber tool that AI assistants can use for games, simulations, and unpredictable outcomes.
 
 ### Step 3: Enhanced Random Number with Cloudflare drand
+
 Integrate with external APIs to give AI assistants access to powerful services beyond their training data.
 
 ### Step 4: Deploying and Using with Cloudflare AI Playground
+
 Make your tools accessible anywhere by deploying to the cloud and connecting to real AI assistants. We'll use the Cloudflare AI Playground for testing, with an optional section on Claude Desktop integration.
 
 ### Step 5: Setting Up Cloudflare KV Storage
+
 Learn how to add persistent storage to your MCP server using Cloudflare KV. We'll set up the infrastructure needed for stateful applications.
 
 ### Step 6: Building a Persistent Todo App
+
 Build a complete todo list application that maintains state between conversations, allowing AI assistants to remember tasks for users.
 
 ### Step 7: Customize Your MCP Server with AI Assistance
+
 Use AI tools like Claude Code or Cursor to create your own custom MCP tools, connecting to APIs and services that interest you. This step encourages creative exploration and showcases how AI can accelerate your development workflow.
 
 ## Additional Resources
