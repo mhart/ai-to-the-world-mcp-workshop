@@ -82,7 +82,7 @@ npx @modelcontextprotocol/inspector
 ```
 
 - Visit the inspector at [http://127.0.0.1:6274](http://127.0.0.1:6274).
-- Select "SSE" as the Transport Type
+- Select "Streamable HTTP" as the Transport Type
 - Enter http://localhost:8787/mcp in the URL box and select "Connect"
 - Click "List Tools" to view tools our MCP Server has made available to us
 - Click the "randomNumber" tool and test it out!
