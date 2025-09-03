@@ -1,6 +1,6 @@
-# 🌐 AI to the World: MCP Workshop
+# 🌐 Hands On: MCP Workshop
 
-## Welcome to the AI to the World MCP Workshop!
+## Welcome to the MCP Workshop!
 
 The Model Context Protocol (MCP) is an open standard that allows AI assistants to use external tools and access real-time information. By building an MCP server, you enable AI systems like Claude to extend their capabilities through your custom tools, creating more powerful AI agents.
 
@@ -12,12 +12,12 @@ Before starting this workshop, please ensure you have the following installed:
 
 - **Operating System** macOS 13.5+, Windows 11, or Linux distros that support glib 2.35
 - **Node.js** (version 18 or later) - [Download](https://nodejs.org/)
-- **A Cloudflare account** - [Sign up](https://dash.cloudflare.com/sign-up) (free tier is sufficient)
-
-You'll also need a text editor or IDE of your choice (VS Code recommended).
+- **Text Editor or IDE** (VS Code recommended)
+- **Git** If you're on Windows you might need to: [Download](https://git-scm.com/downloads)
 
 **Optional:**
 
+- **A Cloudflare account** - [Sign up](https://dash.cloudflare.com/sign-up) (free tier is sufficient)
 - **Claude Desktop** - [Download](https://claude.ai/desktop) - Only needed for Step 4's optional integration. The workshop can be completed using just the Cloudflare AI Playground.
 
 ## Getting Started
