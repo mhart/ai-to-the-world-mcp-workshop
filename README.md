@@ -16,6 +16,7 @@ By the end of this step, you'll be able to:
 - Set up a functional MCP server using Cloudflare Workers
 - Understand the basic structure of an MCP server
 - Test your MCP tools using the inspector interface
+- Connect your deployed MCP server to the Cloudflare AI Playground
 - Troubleshoot common setup and connection issues
 
 ### Implementation
@@ -48,11 +49,19 @@ To test your MCP Server, you can use the MCP inspector in a new terminal:
 npx @modelcontextprotocol/inspector
 ```
 
-- Visit the inspector at [http://127.0.0.1:6274](http://127.0.0.1:6274).
+- Visit the inspector at the URL it gives you, which looks like `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=abcd1234`.
 - Select "Streamable HTTP" as the Transport Type
-- Enter http://localhost:8787/mcp in the URL box and select "Connect"
+- Enter `http://localhost:8787/mcp` in the URL box and select "Connect"
 - Click "List Tools" to view tools our MCP Server has made available to us
 - Click the "add" tool and test it out!
+
+5. Test your new tool using Cloudflare's AI Playground
+
+- Go to https://playground.ai.cloudflare.com/
+- Enter http://localhost:8787/mcp in the MCP Server URL under "MCP Servers"
+- Click "Connect"
+- Enter "Add 2 + 4 together using our add MCP tool" as a User message and click
+  "Run"
 
 ## Troubleshooting
 
@@ -77,3 +86,8 @@ Then update the URL in the inspector to http://localhost:8788/mcp
 - Check your terminal for any errors in the server logs
 - Verify that the URL is correct: http://localhost:8787/mcp
 - Make sure you clicked "Connect" before trying to list tools
+
+### Playground can't connect
+
+- Click `Clear stored authentication` and reload the page
+- Verify that the URL is correct: http://localhost:8787/mcp
