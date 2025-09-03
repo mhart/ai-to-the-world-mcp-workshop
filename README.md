@@ -1,4 +1,4 @@
-# 🌐 AI to the World: MCP Workshop
+# 🌐 Hands On: MCP Workshop
 
 ## Welcome to Step 5: Setting Up Cloudflare KV Storage
 
@@ -26,7 +26,7 @@ In this step, we'll add persistent storage capabilities to our MCP server by set
 1. Create a KV namespace using Wrangler
 
 ```bash
-npx wrangler kv namespace create "TODO_STORE"
+npx wrangler kv namespace create TODO_STORE
 ```
 
 This will output something like:
@@ -45,9 +45,11 @@ Add the following to your configuration file in your kv_namespaces array:
 }
 ```
 
-2. Add the KV namespace to your wrangler.jsonc file
+Then when prompted `Would you like Wrangler to add it on your behalf?`, choose `Yes`
 
-Open `wrangler.jsonc` and uncomment/update the KV namespace configuration from the previous step:
+2. Check the KV namespace is in your wrangler.jsonc file
+
+Open `wrangler.jsonc` and check the KV namespace configuration has been added from the previous step:
 
 ```jsonc
   "kv_namespaces": [
@@ -57,8 +59,6 @@ Open `wrangler.jsonc` and uncomment/update the KV namespace configuration from t
     }
   ]
 ```
-
-Note: Replace the commented section in your wrangler.jsonc with the actual configuration and ID from the wrangler output.
 
 3. Update worker-configuration.d.ts with the KV type
 
@@ -73,33 +73,42 @@ npm run cf-typegen
 Open `src/index.ts` and add this simple test tool inside the `init()` method:
 
 ```javascript
+// Store value tool
 this.server.tool(
-	"storeValue",
-	"Store a simple key-value pair in Cloudflare KV",
-	{
-		key: z.string().describe("Key to store the value under"),
-		value: z.string().describe("Value to store"),
-	},
-	async ({ key, value }) => {
-		try {
-			await this.env.TODO_STORE.put(key, value);
+  "storeValue",
+  "Store a simple key-value pair in Cloudflare KV",
+  {
+    key: z.string().describe("Key to store the value under"),
+    value: z.string().describe("Value to store"),
+  },
+  async ({ key, value }) => {
+    try {
+      await this.env.TODO_STORE.put(key, value);
 
-			return {
-				content: [
-					{
-						type: "text",
-						text: "Value stored successfully",
-					},
-				],
-			};
-		} catch (error: any) {
-			console.error("Error storing value:", error);
-			throw new Error(
-				`Failed to store value: ${error?.message || "Unknown error"}`
-			);
-		}
-	}
+      return {
+        content: [
+          {
+            type: "text",
+            text: "Value stored successfully",
+          },
+        ],
+      };
+    } catch (error: any) {
+      console.error("Error storing value:", error);
+      throw new Error(
+        `Failed to store value: ${error?.message || "Unknown error"}`
+      );
+    }
+  }
 );
+```
+
+Also make sure the `MyMCP` agent class now has the `<Env>` modifier:
+
+```javascript
+export class MyMCP extends McpAgent<Env> {
+  // ...
+}
 ```
 
 5. Run locally with your new KV binding
@@ -110,10 +119,21 @@ npm run dev
 
 6. Test your KV storage with MCP Inspector
 
-- Go to http://127.0.0.1:6274/
-- Connect to your local MCP server URL or "clear" and "list" tools if already
-  connected to see your new storevalue tool
 - Try the storeValue tool with a simple key and value (e.g., key="test", value="Hello KV!")
+
+7. Delete any values you've stored, in preparation for the next step, using:
+
+```bash
+npx wrangler kv key delete --binding TODO_STORE --local <key>
+```
+
+(replace `<key>` with the name of each key you added)
+
+You can check your keys with:
+
+```bash
+npx wrangler kv key list --binding TODO_STORE --local
+```
 
 Congratulations! You've successfully set up Cloudflare KV storage for your MCP server. In the next step, we'll build a complete todo list application using this persistent storage.
 

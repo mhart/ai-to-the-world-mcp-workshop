@@ -2,10 +2,6 @@ import { McpAgent } from "agents/mcp";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-interface Env {
-  TODO_STORE: KVNamespace;
-}
-
 // Define our MCP agent with tools
 export class MyMCP extends McpAgent<Env> {
   server = new McpServer({
@@ -16,6 +12,7 @@ export class MyMCP extends McpAgent<Env> {
   });
 
   async init() {
+    // Store value tool
     this.server.tool(
       "storeValue",
       "Store a simple key-value pair in Cloudflare KV",
@@ -42,19 +39,6 @@ export class MyMCP extends McpAgent<Env> {
           );
         }
       }
-    );
-
-    // Simple addition tool
-    this.server.tool(
-      "add",
-      "Simple addition of two numbers",
-      {
-        a: z.number().describe("First number to add"),
-        b: z.number().describe("Second number to add"),
-      },
-      async ({ a, b }) => ({
-        content: [{ type: "text", text: String(a + b) }],
-      })
     );
 
     // Random number tool
@@ -109,6 +93,19 @@ export class MyMCP extends McpAgent<Env> {
           };
         }
       }
+    );
+
+    // Simple addition tool
+    this.server.tool(
+      "add",
+      "Simple addition of two numbers",
+      {
+        a: z.number().describe("First number to add"),
+        b: z.number().describe("Second number to add"),
+      },
+      async ({ a, b }) => ({
+        content: [{ type: "text", text: String(a + b) }],
+      })
     );
 
     // Calculator tool with multiple operations
