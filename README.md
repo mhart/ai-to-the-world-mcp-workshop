@@ -1,4 +1,4 @@
-# 🌐 AI to the World: MCP Workshop
+# 🌐 Hands On: MCP Workshop
 
 ## Welcome to Step 7: Customize Your MCP Server with AI Assistance
 
@@ -88,6 +88,7 @@ Here's an example of how you might implement a weather tool with AI assistance:
 // Weather tool
 this.server.tool(
   "getWeather",
+  "Gets the weather for a given city",
   {
     city: z.string().describe("City name to get weather for"),
     units: z
