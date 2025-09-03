@@ -10,6 +10,7 @@ export class MyMCP extends McpAgent<Env> {
     description:
       "A collection of useful tools including a true random number generator powered by drand",
   });
+
   async init() {
     // Random number tool
     this.server.tool(
@@ -68,10 +69,10 @@ export class MyMCP extends McpAgent<Env> {
     // Simple addition tool
     this.server.tool(
       "add",
-      "Add two numbers together",
+      "Simple addition of two numbers",
       {
-        a: z.number().describe("The first number"),
-        b: z.number().describe("The second number"),
+        a: z.number().describe("First number to add"),
+        b: z.number().describe("Second number to add"),
       },
       async ({ a, b }) => ({
         content: [{ type: "text", text: String(a + b) }],
@@ -81,13 +82,13 @@ export class MyMCP extends McpAgent<Env> {
     // Calculator tool with multiple operations
     this.server.tool(
       "calculate",
-      "Perform a mathematical operation on two numbers",
+      "Perform various mathematical operations on two numbers",
       {
         operation: z
           .enum(["add", "subtract", "multiply", "divide"])
-          .describe("The operation to perform"),
-        a: z.number().describe("The first number"),
-        b: z.number().describe("The second number"),
+          .describe("Mathematical operation to perform"),
+        a: z.number().describe("First operand"),
+        b: z.number().describe("Second operand"),
       },
       async ({ operation, a, b }) => {
         let result: number;

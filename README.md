@@ -1,4 +1,4 @@
-# 🌐 AI to the World: MCP Workshop
+# 🌐 Hands On: MCP Workshop
 
 ## Welcome to Step 4: Deploying and Using with Cloudflare AI Playground
 
@@ -39,6 +39,20 @@ export class MyMCP extends McpAgent<Env> {
 Update your tools to include parameter descriptions and tool descriptions:
 
 ```javascript
+// Random number tool
+this.server.tool(
+  "randomNumber",
+  "Generate a truly random number using Cloudflare's drand service",
+  {
+    startRange: z.number().describe("Minimum value (inclusive)"),
+    endRange: z.number().describe("Maximum value (inclusive)"),
+  },
+  async ({ startRange, endRange }) => {
+    // ... implementation ...
+  }
+);
+
+// Simple addition tool
 this.server.tool(
   "add",
   "Simple addition of two numbers",
@@ -51,16 +65,7 @@ this.server.tool(
   })
 );
 
-this.server.tool(
-  "randomNumber",
-  "Generate a truly random number using Cloudflare's drand service",
-  {
-    startRange: z.number().describe("Minimum value (inclusive)"),
-    endRange: z.number().describe("Maximum value (inclusive)"),
-  }
-  // ... implementation ...
-);
-
+// Calculator tool with multiple operations
 this.server.tool(
   "calculate",
   "Perform various mathematical operations on two numbers",
@@ -70,8 +75,10 @@ this.server.tool(
       .describe("Mathematical operation to perform"),
     a: z.number().describe("First operand"),
     b: z.number().describe("Second operand"),
+  },
+  async ({ operation, a, b }) => {
+    // ... implementation ...
   }
-  // ... implementation ...
 );
 ```
 
@@ -107,7 +114,7 @@ The Cloudflare AI Playground provides a user-friendly interface to interact with
 You can also connect to your MCP server from Claude Desktop:
 
 - Follow [Anthropic's Quickstart](https://modelcontextprotocol.io/quickstart/user)
-- In Claude Desktop go to Settings > Developer > Edit Config
+- In Claude Desktop go to `Developer > Open App Config File...`
 - Update with this configuration, using your deployed URL:
 
 ```json
@@ -124,7 +131,8 @@ You can also connect to your MCP server from Claude Desktop:
 }
 ```
 
-- Restart Claude and you should see your tools available
+- Go to `Developer > Reload MCP Configuration` and then if you click the "Search and tools" button below the chat, you should see `calculator` available
+- Try it out by asking Claude to add numbers or generate random numbers (if prompted, click an allow option to let the tool execute)
 
 Congratulations! You've built and deployed a fully functional MCP server with custom tools that can be accessed from various AI assistants.
 
