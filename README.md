@@ -4,7 +4,9 @@
 
 The Model Context Protocol (MCP) is an open standard that allows AI assistants to use external tools and access real-time information. By building an MCP server, you enable AI systems like Claude to extend their capabilities through your custom tools, creating more powerful AI agents.
 
-In this workshop, we'll be building and deploying an MCP server with useful tools. You can work through each step by changing branches in this repo.
+In this workshop, we'll be building and deploying an MCP server with useful tools.
+
+**You can work through each step by changing branches in this repo.**
 
 ## Prerequisites
 
