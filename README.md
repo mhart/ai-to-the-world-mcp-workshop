@@ -1,4 +1,4 @@
-# 🌐 AI to the World: MCP Workshop
+# 🌐 Hands On: MCP Workshop
 
 ## Welcome to Step 1: Getting Started with MCP Server
 
@@ -42,7 +42,7 @@ npm start
 
 4. Test your MCP Server using MCP inspector
 
-To test your MCP Server, you can use the MCP inspector:
+To test your MCP Server, you can use the MCP inspector in a new terminal:
 
 ```bash
 npx @modelcontextprotocol/inspector
