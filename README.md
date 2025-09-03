@@ -1,4 +1,4 @@
-# 🌐 AI to the World: MCP Workshop
+# 🌐 Hands On: MCP Workshop
 
 ## Welcome to Step 3: Enhanced Random Number with Cloudflare drand
 
@@ -75,17 +75,7 @@ this.server.tool(
 );
 ```
 
-4. Test your enhanced tool using MCP inspector
-
-```bash
-npx @modelcontextprotocol/inspector
-```
-
-- Visit the inspector at [http://127.0.0.1:6274](http://127.0.0.1:6274).
-- Select "Streamable HTTP" as the Transport Type
-- Enter http://localhost:8787/mcp in the URL box and select "Connect"
-- Click "List Tools" to view tools our MCP Server has made available to us
-- Click the "randomNumber" tool and test it out!
+4. Test your enhanced tool in the Inspector and Playground
 
 ## Troubleshooting
 
