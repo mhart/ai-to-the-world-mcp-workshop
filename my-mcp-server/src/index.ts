@@ -2,16 +2,6 @@ import { McpAgent } from "agents/mcp";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-interface Env {
-  TODO_STORE: KVNamespace;
-}
-
-interface Task {
-  task: string;
-  completed: boolean;
-  createdAt: string;
-}
-
 // Define our MCP agent with tools
 export class MyMCP extends McpAgent<Env> {
   server = new McpServer({
@@ -22,34 +12,7 @@ export class MyMCP extends McpAgent<Env> {
   });
 
   async init() {
-    this.server.tool(
-      "storeValue",
-      "Store a simple key-value pair in Cloudflare KV",
-      {
-        key: z.string().describe("Key to store the value under"),
-        value: z.string().describe("Value to store"),
-      },
-      async ({ key, value }) => {
-        try {
-          await this.env.TODO_STORE.put(key, value);
-
-          return {
-            content: [
-              {
-                type: "text",
-                text: "Value stored successfully",
-              },
-            ],
-          };
-        } catch (error: any) {
-          console.error("Error storing value:", error);
-          throw new Error(
-            `Failed to store value: ${error?.message || "Unknown error"}`
-          );
-        }
-      }
-    );
-
+    // Add Todo tool
     this.server.tool(
       "addTodo",
       "Add a new task to your todo list",
@@ -77,9 +40,7 @@ export class MyMCP extends McpAgent<Env> {
           };
         } catch (error) {
           return {
-            content: [
-              { type: "text", text: `Error adding task: ${error.message}` },
-            ],
+            content: [{ type: "text", text: `Error adding task: ${error}` }],
           };
         }
       }
@@ -115,13 +76,9 @@ export class MyMCP extends McpAgent<Env> {
               },
             ],
           };
-        } catch (error: unknown) {
-          const errorMessage =
-            error instanceof Error ? error.message : "Unknown error";
+        } catch (error) {
           return {
-            content: [
-              { type: "text", text: `Error listing tasks: ${errorMessage}` },
-            ],
+            content: [{ type: "text", text: `Error listing tasks: ${error}` }],
           };
         }
       }
@@ -137,7 +94,8 @@ export class MyMCP extends McpAgent<Env> {
       async ({ task }) => {
         try {
           // Check if task exists
-          const taskData = await this.env.TODO_STORE.get(task, "json");
+          const taskData: { completed: boolean } | null =
+            await this.env.TODO_STORE.get(task, "json");
 
           if (!taskData) {
             return {
@@ -160,23 +118,11 @@ export class MyMCP extends McpAgent<Env> {
         } catch (error) {
           return {
             content: [
-              { type: "text", text: `Error completing task: ${error.message}` },
+              { type: "text", text: `Error completing task: ${error}` },
             ],
           };
         }
       }
-    );
-    // Simple addition tool
-    this.server.tool(
-      "add",
-      "Simple addition of two numbers",
-      {
-        a: z.number().describe("First number to add"),
-        b: z.number().describe("Second number to add"),
-      },
-      async ({ a, b }) => ({
-        content: [{ type: "text", text: String(a + b) }],
-      })
     );
 
     // Random number tool
@@ -231,6 +177,19 @@ export class MyMCP extends McpAgent<Env> {
           };
         }
       }
+    );
+
+    // Simple addition tool
+    this.server.tool(
+      "add",
+      "Simple addition of two numbers",
+      {
+        a: z.number().describe("First number to add"),
+        b: z.number().describe("Second number to add"),
+      },
+      async ({ a, b }) => ({
+        content: [{ type: "text", text: String(a + b) }],
+      })
     );
 
     // Calculator tool with multiple operations

@@ -1,4 +1,4 @@
-# 🌐 AI to the World: MCP Workshop
+# 🌐 Hands On: MCP Workshop
 
 ## Welcome to Step 6: Building a Persistent Todo App
 
@@ -27,7 +27,7 @@ In this step, we'll build a complete todo list application using the Cloudflare 
 
 2. Navigate to src/index.ts
 
-3. Add the "addTodo" tool
+3. Add the "addTodo" tool (replace the "storeValue" tool)
 
 ```javascript
 // Add Todo tool
@@ -118,7 +118,8 @@ this.server.tool(
   async ({ task }) => {
     try {
       // Check if task exists
-      const taskData = await this.env.TODO_STORE.get(task, "json");
+      const taskData: { completed: boolean } | null =
+        await this.env.TODO_STORE.get(task, "json");
 
       if (!taskData) {
         return {
