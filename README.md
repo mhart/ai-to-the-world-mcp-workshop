@@ -1,4 +1,4 @@
-# 🌐 AI to the World: MCP Workshop
+# 🌐 Hands On: MCP Workshop
 
 ## Welcome to Step 2: Adding Custom Tools
 
@@ -24,9 +24,10 @@ By the end of this step, you'll be able to:
 
 2. Navigate to src/index.ts
 
-3. Add a new random number tool
+3. Add a new random number tool in the `init()` function (before the other tool definitions):
 
 ```javascript
+// Random number tool
 this.server.tool(
   "randomNumber",
   { startRange: z.number(), endRange: z.number() },
@@ -43,12 +44,16 @@ this.server.tool(
 );
 ```
 
-4. Test your new tool using Cloudflare's AI Playground
+4. Test your new tool in the MCP Inspector
 
-- Go to https://playground.ai.cloudflare.com/
-- Enter http://localhost:8787/mcp in the MCP Server URL under "MCP Servers"
-- Click "Connect"
-- Enter "Add 2 + 4 together using our add MCP tool" as a User message and click
+- Make sure the inspector is running as per the last step
+- Click "List Tools"
+- Click the "randomNumber" tool, enter a start and end, and test it out!
+
+5. Test your new tool in the AI Playground
+
+- Make sure your MCP server is set up on https://playground.ai.cloudflare.com/ as in the last step
+- Enter "Generate a random number between 10 and 20" as a User message and click
   "Run"
 
 ## Troubleshooting

@@ -10,15 +10,7 @@ export class MyMCP extends McpAgent {
   });
 
   async init() {
-    // Simple addition tool
-    this.server.tool(
-      "add",
-      { a: z.number(), b: z.number() },
-      async ({ a, b }) => ({
-        content: [{ type: "text", text: String(a + b) }],
-      })
-    );
-
+    // Random number tool
     this.server.tool(
       "randomNumber",
       { startRange: z.number(), endRange: z.number() },
@@ -32,6 +24,15 @@ export class MyMCP extends McpAgent {
             ),
           },
         ],
+      })
+    );
+
+    // Simple addition tool
+    this.server.tool(
+      "add",
+      { a: z.number(), b: z.number() },
+      async ({ a, b }) => ({
+        content: [{ type: "text", text: String(a + b) }],
       })
     );
 
@@ -79,12 +80,10 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/sse" || url.pathname === "/sse/message") {
-      // @ts-ignore
       return MyMCP.serveSSE("/sse").fetch(request, env, ctx);
     }
 
     if (url.pathname === "/mcp") {
-      // @ts-ignore
       return MyMCP.serve("/mcp").fetch(request, env, ctx);
     }
 
